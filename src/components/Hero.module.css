@@ -1,0 +1,275 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 104px 0 0;
+  text-align: center;
+  background: var(--bg);
+}
+
+.aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(90px);
+  opacity: 0.42;
+}
+
+.blobA,
+.blobB {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+}
+
+.blobA {
+  width: 38rem;
+  height: 38rem;
+  top: -20rem;
+  left: 50%;
+  margin-left: -30rem;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 68%);
+  animation: driftA 24s ease-in-out infinite alternate;
+}
+
+.blobB {
+  width: 30rem;
+  height: 30rem;
+  top: -6rem;
+  right: -10rem;
+  background: radial-gradient(circle, #a855f7 0%, transparent 68%);
+  animation: driftB 30s ease-in-out infinite alternate;
+}
+
+@keyframes driftA {
+  to {
+    transform: translate3d(5rem, 3rem, 0) scale(1.12);
+  }
+}
+
+@keyframes driftB {
+  to {
+    transform: translate3d(-4rem, 5rem, 0) scale(0.9);
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 0 3px rgb(48 209 88 / 0.18);
+}
+
+.name {
+  margin-top: 18px;
+  font-size: clamp(3rem, 9.5vw, 6rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.role {
+  margin-top: 10px;
+  min-height: 1.6em;
+  font-size: clamp(1.35rem, 3.6vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+
+.tagline {
+  margin-top: 22px;
+  max-width: 620px;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 30px;
+  font-size: 15px;
+  color: var(--text-faint);
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  color: var(--text);
+  opacity: 0.7;
+  transition: opacity var(--transition), background-color var(--transition),
+    transform var(--transition);
+}
+
+.socialLink:hover {
+  opacity: 1;
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* The "product shot" below the hero copy. */
+.shotWrap {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 72px auto 0;
+  padding: 0 22px;
+}
+
+.codeCard {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-elev);
+  box-shadow: var(--shadow-lg);
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.codeDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.codeDot:first-child {
+  background: #ff5f57;
+}
+
+.codeDot:nth-child(2) {
+  background: #febc2e;
+}
+
+.codeDot:nth-child(3) {
+  background: #28c840;
+}
+
+.codeFile {
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.codeBody {
+  margin: 0;
+  padding: 28px 26px 32px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.codeLine,
+.codeAccent {
+  display: block;
+}
+
+.codeAccent {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 64px;
+  }
+
+  .aurora {
+    opacity: 0.3;
+  }
+
+  .inner {
+    padding: 0 18px;
+  }
+
+  .shotWrap {
+    margin-top: 48px;
+    padding: 0 18px;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .button {
+    flex: 1 1 auto;
+    min-width: 150px;
+  }
+
+  .codeBody {
+    font-size: 12.5px;
+    padding: 20px 18px 24px;
+  }
+}

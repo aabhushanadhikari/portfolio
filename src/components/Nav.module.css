@@ -1,0 +1,175 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-height);
+  background: var(--glass);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.inner {
+  max-width: var(--max-width-wide);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  justify-self: start;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.brandName {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  justify-self: center;
+}
+
+.link {
+  padding: 6px 11px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  opacity: 0.8;
+  white-space: nowrap;
+  transition: opacity var(--transition);
+}
+
+.link:hover {
+  color: var(--text);
+  opacity: 1;
+}
+
+.linkActive {
+  color: var(--accent);
+  font-weight: 500;
+  opacity: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: end;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  opacity: 0.8;
+  transition: opacity var(--transition), background-color var(--transition);
+}
+
+.iconButton:hover {
+  opacity: 1;
+  background: var(--bg-alt);
+}
+
+.resume {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 13px;
+  font-weight: 400;
+  transition: background-color var(--transition);
+}
+
+.resume:hover {
+  background: var(--accent-hover);
+  color: var(--accent-contrast);
+}
+
+@media (min-width: 1069px) {
+  .resume {
+    display: inline-flex;
+  }
+}
+
+/*
+ * Without a burger button, the links stay visible on small screens and scroll
+ * sideways instead. A two-row header keeps them tappable.
+ */
+@media (max-width: 1068px) {
+  .header {
+    height: auto;
+  }
+
+  .inner {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 10px 18px 0;
+  }
+
+  .links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: stretch;
+    justify-content: flex-start;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+    /* Fade the right edge to hint that the row scrolls. */
+    mask-image: linear-gradient(to right, #000 88%, transparent);
+  }
+
+  .links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .link {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .brandName {
+    display: none;
+  }
+}

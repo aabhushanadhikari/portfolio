@@ -1,0 +1,154 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.entry {
+  position: relative;
+  padding-left: 32px;
+}
+
+.marker {
+  position: absolute;
+  left: 3px;
+  top: 30px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.entry:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 46px;
+  bottom: -20px;
+  width: 1px;
+  background: var(--border);
+}
+
+.card {
+  padding: 34px 32px;
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.role {
+  font-size: 24px;
+  letter-spacing: -0.025em;
+}
+
+.company {
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.focus {
+  margin-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.dates {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.current {
+  padding: 3px 11px;
+  border-radius: var(--radius-sm);
+  background: rgb(48 209 88 / 0.14);
+  color: #1d9e46;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+:root[data-theme='dark'] .current {
+  color: #30d158;
+}
+
+.location {
+  margin-top: 5px;
+  font-size: 15px;
+  color: var(--text-faint);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 26px;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.highlights li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.stack li {
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 734px) {
+  .entry {
+    padding-left: 24px;
+  }
+
+  .card {
+    padding: 24px 20px;
+  }
+
+  .role {
+    font-size: 21px;
+  }
+
+  .dates {
+    white-space: normal;
+  }
+}

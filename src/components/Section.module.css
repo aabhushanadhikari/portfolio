@@ -1,0 +1,60 @@
+/* Every band is full-bleed; separation comes from background, not borders. */
+.default,
+.alt,
+.dark {
+  padding: var(--section-pad) 0;
+}
+
+.alt {
+  background: var(--bg-alt);
+}
+
+/* Re-themes descendants by overriding the tokens locally. */
+.dark {
+  --bg: #000000;
+  --bg-alt: #1d1d1f;
+  --bg-elev: #1d1d1f;
+  --text: #f5f5f7;
+  --text-muted: #a1a1a6;
+  --text-faint: #86868b;
+  --border: #424245;
+  --border-strong: #545457;
+  --accent: #2997ff;
+  --accent-hover: #47a6ff;
+  --accent-soft: #10243d;
+  --accent-contrast: #000000;
+
+  background: #000000;
+  color: #f5f5f7;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+.header {
+  max-width: 720px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+}
+
+.title {
+  font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+  letter-spacing: -0.035em;
+}
+
+@media (max-width: 734px) {
+  .header {
+    margin-bottom: 44px;
+  }
+}
