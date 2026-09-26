@@ -15,7 +15,7 @@
   --radius: 18px;
   --radius-lg: 28px;
 
-  --nav-height: 48px;
+  --nav-height: 56px;
   --section-pad: 128px;
 
   --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -32,9 +32,9 @@
   --text-faint: #86868b;
   --border: #d2d2d7;
   --border-strong: #c8c8cd;
-  --accent: #0071e3;
-  --accent-hover: #0077ed;
-  --accent-soft: #e8f2ff;
+  --accent: #9c6b1e;
+  --accent-hover: #7a5600;
+  --accent-soft: #f7eedd;
   --accent-contrast: #ffffff;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
   --shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
@@ -51,9 +51,9 @@
   --text-faint: #86868b;
   --border: #424245;
   --border-strong: #545457;
-  --accent: #2997ff;
-  --accent-hover: #47a6ff;
-  --accent-soft: #10243d;
+  --accent: #e8b33c;
+  --accent-hover: #f5c968;
+  --accent-soft: #241a08;
   --accent-contrast: #000000;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
@@ -234,7 +234,7 @@ code {
 @media (max-width: 734px) {
   :root {
     --section-pad: 80px;
-    --nav-height: 52px;
+    --nav-height: 60px;
   }
 
   body {

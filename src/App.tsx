@@ -7,17 +7,12 @@ import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { Nav } from './components/Nav'
 import { Projects } from './components/Projects'
-import { ScrollProgress } from './components/ScrollProgress'
 import { Skills } from './components/Skills'
 import { TechMarquee } from './components/TechMarquee'
-import { useScrollProgress } from './hooks/useScrollProgress'
 
 function App() {
-  const progress = useScrollProgress()
-
   return (
     <>
-      <ScrollProgress progress={progress} />
       <Nav />
       <main>
         <Hero />

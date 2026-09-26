@@ -24,10 +24,10 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   justify-self: start;
   color: var(--text);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -36,18 +36,18 @@
 .brandMark {
   display: grid;
   place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
   background: var(--accent);
   color: var(--accent-contrast);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0;
 }
 
 .brandName {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
 }
 
@@ -59,9 +59,9 @@
 }
 
 .link {
-  padding: 6px 11px;
+  padding: 7px 13px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -91,8 +91,8 @@
 .iconButton {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border: none;
   border-radius: 50%;
   background: transparent;
@@ -110,11 +110,11 @@
   display: none;
   align-items: center;
   gap: 6px;
-  padding: 6px 16px;
+  padding: 8px 18px;
   border-radius: var(--radius-sm);
   background: var(--accent);
   color: var(--accent-contrast);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   transition: background-color var(--transition);
 }
@@ -163,8 +163,8 @@
   }
 
   .link {
-    font-size: 14px;
-    padding: 5px 10px;
+    font-size: 15px;
+    padding: 6px 12px;
   }
 }
 

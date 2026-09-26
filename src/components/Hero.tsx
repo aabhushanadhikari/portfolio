@@ -20,11 +20,6 @@ const codeLines: { text: string; accent?: boolean }[] = [
 export function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <div className={styles.aurora} aria-hidden="true">
-        <span className={styles.blobA} />
-        <span className={styles.blobB} />
-      </div>
-
       <div className={styles.inner}>
         <div className={styles.content}>
           <Reveal>
