@@ -7,7 +7,9 @@ const STORAGE_KEY = 'portfolio-theme'
 function getInitialTheme(): Theme {
   const stored = window.localStorage.getItem(STORAGE_KEY)
   if (stored === 'light' || stored === 'dark') return stored
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  // The page is dark-first, so an unset preference lands on dark rather than
+  // following the OS. This has to match the pre-paint script in index.html.
+  return 'dark'
 }
 
 export function useTheme() {

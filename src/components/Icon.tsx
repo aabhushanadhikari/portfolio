@@ -9,6 +9,7 @@ export type IconName =
   | 'sun'
   | 'moon'
   | 'arrowUpRight'
+  | 'chevronRight'
   | 'download'
   | 'location'
   | 'clock'
@@ -33,6 +34,7 @@ const paths: Record<IconName, string> = {
   sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm-1-13h2v3h-2V2Zm0 17h2v3h-2v-3ZM2 11h3v2H2v-2Zm17 0h3v2h-3v-2ZM4.22 6.93 5.64 5.51 7.76 7.63 6.34 9.05 4.22 6.93Zm12.02 12.02 1.42-1.42 2.12 2.12-1.42 1.42-2.12-2.12Zm2.12-12.02 1.42 1.42-2.12 2.12-1.42-1.42 2.12-2.12ZM4.22 17.07l2.12-2.12 1.42 1.42-2.12 2.12-1.42-1.42Z',
   moon: 'M21 13.2A9 9 0 1 1 10.8 3a7.2 7.2 0 0 0 10.2 10.2Z',
   arrowUpRight: 'M7 17 17 7M9 7h8v8',
+  chevronRight: 'm9.5 5.5 6.5 6.5-6.5 6.5',
   download: 'M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2',
   location: 'M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z',
   briefcase:

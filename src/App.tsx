@@ -8,7 +8,7 @@ import { Hero } from './components/Hero'
 import { Nav } from './components/Nav'
 import { Projects } from './components/Projects'
 import { Skills } from './components/Skills'
-import { TechMarquee } from './components/TechMarquee'
+import { Stats } from './components/Stats'
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
       <Nav />
       <main>
         <Hero />
-        <TechMarquee />
         <About />
+        <Stats />
         <Skills />
         <Experience />
         <Projects />

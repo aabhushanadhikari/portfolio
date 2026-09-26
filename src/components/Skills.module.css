@@ -1,47 +1,54 @@
-.grid {
+/* Extends to the section's own edges so the strip reads as a swipeable row. */
+.viewport {
+  margin: 0 calc(var(--gutter) * -1);
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  /* Fade only the trailing edge, so the row reads as continuing off-screen. */
+  mask-image: linear-gradient(to right, #000 94%, transparent);
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.strip {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(228px, 1fr);
+  column-gap: clamp(24px, 3vw, 48px);
+  padding-bottom: 8px;
 }
 
-.card {
-  height: 100%;
-  padding: 32px 28px;
-  border-radius: var(--radius);
-  background: var(--bg);
-  transition: transform var(--transition);
+.column {
+  /* Tags start on the same line in every column. */
+  align-self: start;
+  scroll-snap-align: start;
+  padding-right: clamp(8px, 2vw, 32px);
+  border-right: 1px solid var(--hairline);
 }
 
-.card:hover {
-  transform: translateY(-3px);
+.column:last-child {
+  border-right: none;
 }
 
-.cardTitle {
-  margin-bottom: 20px;
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  text-align: center;
+.column h3 {
+  padding-bottom: 22px;
 }
 
-.list {
+.tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 9px;
+  gap: 10px;
 }
 
-.tag {
-  padding: 7px 15px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-alt);
-  font-size: 14px;
-  letter-spacing: -0.01em;
-  color: var(--text-muted);
-  transition: color var(--transition), background-color var(--transition);
-}
+@media (max-width: 734px) {
+  .strip {
+    grid-auto-columns: minmax(200px, 1fr);
+  }
 
-.tag:hover {
-  background: var(--accent-soft);
-  color: var(--accent);
+  .viewport {
+    mask-image: linear-gradient(to right, #000 90%, transparent);
+  }
 }

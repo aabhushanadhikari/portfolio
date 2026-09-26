@@ -2,7 +2,6 @@ import { profile, socials } from '../data/portfolio'
 import { Icon } from './Icon'
 import type { IconName } from './Icon'
 import { Reveal } from './Reveal'
-import { Typewriter } from './Typewriter'
 import styles from './Hero.module.css'
 
 const codeLines: { text: string; accent?: boolean }[] = [
@@ -20,69 +19,30 @@ const codeLines: { text: string; accent?: boolean }[] = [
 export function Hero() {
   return (
     <section className={styles.hero} id="top">
+      {/* The one place the page centres: a short headline and a subhead. */}
       <div className={styles.inner}>
-        <div className={styles.content}>
-          <Reveal>
-            <p className={styles.eyebrow}>
-              <span className={styles.dot} />
-              {profile.availability}
-            </p>
-          </Reveal>
+        <Reveal>
+          <h1 className={styles.headline}>{profile.name}</h1>
+        </Reveal>
 
-          <Reveal delay={80}>
-            <h1 className={styles.name}>{profile.name}</h1>
-          </Reveal>
+        <Reveal delay={90}>
+          <p className={styles.subhead}>{profile.tagline}</p>
+        </Reveal>
 
-          <Reveal delay={160}>
-            <p className={styles.role}>
-              <Typewriter words={profile.rotatingRoles} />
-            </p>
-          </Reveal>
-
-          <Reveal delay={240}>
-            <p className={styles.tagline}>{profile.tagline}</p>
-          </Reveal>
-
-          <Reveal delay={320}>
-            <div className={styles.buttons}>
-              <a href="#contact" className={`${styles.button} buttonPrimary`}>
-                Get in touch
-              </a>
-              <a href="#projects" className={`${styles.button} buttonSecondary`}>
-                View projects
-              </a>
-            </div>
-          </Reveal>
-
-          <Reveal delay={400}>
-            <p className={styles.location}>
-              <Icon name="location" size={15} />
-              {profile.location}
-            </p>
-          </Reveal>
-
-          <Reveal delay={460}>
-            <ul className={styles.socials}>
-              {socials.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.href}
-                    className={styles.socialLink}
-                    aria-label={social.label}
-                    title={social.label}
-                    {...(social.href.startsWith('http')
-                      ? { target: '_blank', rel: 'noreferrer noopener' }
-                      : {})}
-                  >
-                    <Icon name={social.icon as IconName} size={17} />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
+        <Reveal delay={180}>
+          <div className={styles.actions}>
+            <a href="#contact" className="button">
+              Get in touch
+            </a>
+            <a href="#projects" className="textLink">
+              View projects
+              <Icon name="chevronRight" size={15} />
+            </a>
+          </div>
+        </Reveal>
       </div>
 
+      {/* Product shot: one large object, floating on the page. */}
       <Reveal delay={260} className={styles.shotWrap}>
         <div className={styles.codeCard} aria-hidden="true">
           <div className={styles.codeHeader}>
@@ -94,7 +54,10 @@ export function Hero() {
           <pre className={styles.codeBody}>
             <code>
               {codeLines.map((line, index) => (
-                <span key={index} className={line.accent ? styles.codeAccent : styles.codeLine}>
+                <span
+                  key={index}
+                  className={line.accent ? styles.codeAccent : styles.codeLine}
+                >
                   {line.text || ' '}
                   {'\n'}
                 </span>
@@ -102,6 +65,30 @@ export function Hero() {
             </code>
           </pre>
         </div>
+      </Reveal>
+
+      <Reveal delay={360} className={styles.meta}>
+        <p className={styles.availability}>{profile.availability}</p>
+        <p className={styles.location}>
+          <Icon name="location" size={15} />
+          {profile.location}
+        </p>
+        <ul className={styles.socials}>
+          {socials.map((social) => (
+            <li key={social.label}>
+              <a
+                href={social.href}
+                className={styles.socialLink}
+                {...(social.href.startsWith('http')
+                  ? { target: '_blank', rel: 'noreferrer noopener' }
+                  : {})}
+              >
+                <Icon name={social.icon as IconName} size={16} />
+                {social.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </Reveal>
     </section>
   )

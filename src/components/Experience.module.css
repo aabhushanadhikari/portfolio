@@ -1,154 +1,183 @@
+/* Timeline geometry: a dates rail, a hairline, and a dot that sits on it. */
 .timeline {
+  --rail: 170px;
+  --gap: clamp(28px, 4vw, 56px);
+  /* The hairline runs down the middle of the gap, so the dates and the
+     content both keep their distance from it. */
+  --line-x: calc(var(--rail) + var(--gap) / 2);
+  --dot-x: calc(var(--gap) / -2);
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .entry {
   position: relative;
-  padding-left: 32px;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  column-gap: var(--gap);
+  padding: 40px 0 84px;
 }
 
-.marker {
-  position: absolute;
-  left: 3px;
-  top: 30px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 5px var(--accent-soft);
-}
-
-.entry:not(:last-child)::before {
+/* Hairline down to the dot. */
+.entry::before {
   content: '';
   position: absolute;
-  left: 8px;
-  top: 46px;
-  bottom: -20px;
+  left: var(--line-x);
+  top: 0;
+  width: 1px;
+  height: 53px;
+  background: var(--border);
+}
+
+.entry:first-child::before {
+  display: none;
+}
+
+/* Hairline on to the next entry. */
+.entry::after {
+  content: '';
+  position: absolute;
+  left: var(--line-x);
+  top: 64px;
+  bottom: -40px;
   width: 1px;
   background: var(--border);
 }
 
-.card {
-  padding: 34px 32px;
-  border-radius: var(--radius);
-  background: var(--bg-elev);
+.entry:last-child {
+  padding-bottom: 0;
 }
 
-.top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.role {
-  font-size: 24px;
-  letter-spacing: -0.025em;
-}
-
-.company {
-  margin-top: 4px;
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--accent);
-}
-
-.focus {
-  margin-top: 5px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-faint);
+.entry:last-child::after {
+  display: none;
 }
 
 .dates {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
+  padding-top: 8px;
+  text-align: right;
   color: var(--text-faint);
+  font-size: var(--fs-small);
+}
+
+.datesLine {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 8px;
   white-space: nowrap;
 }
 
+.dash {
+  opacity: 0.6;
+}
+
+/* "Present" carries the status on its own — no coloured pill. */
 .current {
-  padding: 3px 11px;
-  border-radius: var(--radius-sm);
-  background: rgb(48 209 88 / 0.14);
-  color: #1d9e46;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  color: var(--text);
 }
 
-:root[data-theme='dark'] .current {
-  color: #30d158;
+.body {
+  position: relative;
 }
 
-.location {
-  margin-top: 5px;
-  font-size: 15px;
+.dot {
+  position: absolute;
+  top: 13px;
+  left: var(--dot-x);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.company {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  letter-spacing: -0.03em;
+}
+
+.role {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: var(--fs-lede);
+  letter-spacing: var(--tracking-body);
+}
+
+.focus {
+  margin-top: 10px;
   color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
 }
 
 .highlights {
   display: flex;
   flex-direction: column;
-  gap: 11px;
-  margin-top: 26px;
+  gap: 14px;
+  max-width: 70ch;
+  margin-top: 40px;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .highlights li {
   position: relative;
-  padding-left: 22px;
-  font-size: 17px;
-  line-height: 1.5;
-  color: var(--text-muted);
+  padding-left: 26px;
 }
 
 .highlights li::before {
-  content: '';
+  content: '\2014';
   position: absolute;
-  left: 2px;
-  top: 10px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
+  left: 0;
+  color: var(--text-faint);
+}
+
+/* The first line of a role is the point of it, so it gets the weight. */
+.lead {
+  color: var(--text);
+  font-size: var(--fs-lede);
+  line-height: 1.5;
+  letter-spacing: var(--tracking-body);
 }
 
 .stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+  gap: 10px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
+  max-width: 70ch;
 }
 
-.stack li {
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  background: var(--bg);
-  font-size: 14px;
-  color: var(--text-muted);
-}
+@media (max-width: 860px) {
+  .timeline {
+    --rail: 0px;
+    --line-x: 5px;
+    --dot-x: -32px;
+  }
 
-@media (max-width: 734px) {
   .entry {
-    padding-left: 24px;
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 32px;
+    padding-bottom: 64px;
   }
 
-  .card {
-    padding: 24px 20px;
-  }
-
-  .role {
-    font-size: 21px;
+  .entry::after {
+    bottom: -40px;
   }
 
   .dates {
-    white-space: normal;
+    padding-top: 0;
+    margin-bottom: 14px;
+    text-align: left;
+  }
+
+  .datesLine {
+    justify-content: flex-start;
+  }
+
+  .highlights {
+    margin-top: 32px;
   }
 }

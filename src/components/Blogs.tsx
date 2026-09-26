@@ -1,7 +1,7 @@
 import { blogs } from '../data/portfolio'
 import { Icon } from './Icon'
 import { Reveal } from './Reveal'
-import { Section } from './Section'
+import { Section, SectionHeading } from './Section'
 import styles from './Blogs.module.css'
 
 const dateFormatter = new Intl.DateTimeFormat('en-GB', {
@@ -16,44 +16,47 @@ function formatDate(iso: string) {
 
 export function Blogs() {
   return (
-    <Section id="blogs" title="Writing" eyebrow="Blogs">
-      <div className={styles.list}>
-        {blogs.map((post, index) => (
-          <Reveal key={post.url} delay={index * 90}>
-            <a
-              href={post.url}
-              className={styles.card}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <div className={styles.main}>
+    <Section id="blogs" tone="band">
+      <SectionHeading>Writing.</SectionHeading>
+
+      <Reveal>
+        <div className={styles.list}>
+          {blogs.map((post) => (
+            <article key={post.url} className={styles.item}>
+              <div className={styles.meta}>
+                <p className="label">{formatDate(post.publishedAt)}</p>
+                <p className={styles.readTime}>
+                  <Icon name="clock" size={14} />
+                  {post.readMinutes} min read
+                </p>
+              </div>
+
+              <a
+                href={post.url}
+                className={styles.main}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <h3 className={styles.title}>{post.title}</h3>
                 <p className={styles.excerpt}>{post.excerpt}</p>
 
                 <ul className={styles.tags}>
                   {post.tags.map((tag) => (
-                    <li key={tag} className={styles.tag}>
-                      {tag}
+                    <li key={tag}>
+                      <span className="tag">{tag}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
 
-              <div className={styles.meta}>
-                <span className={styles.date}>{formatDate(post.publishedAt)}</span>
-                <span className={styles.readTime}>
-                  <Icon name="clock" size={14} />
-                  {post.readMinutes} min read
-                </span>
-                <span className={styles.readMore}>
+                <span className="textLink">
                   Read on Medium
-                  <Icon name="arrowUpRight" size={15} className={styles.arrow} />
+                  <Icon name="chevronRight" size={15} />
                 </span>
-              </div>
-            </a>
-          </Reveal>
-        ))}
-      </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </Reveal>
     </Section>
   )
 }

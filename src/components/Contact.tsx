@@ -4,8 +4,14 @@ import { profile, socials } from '../data/portfolio'
 import { Icon } from './Icon'
 import type { IconName } from './Icon'
 import { Reveal } from './Reveal'
-import { Section } from './Section'
+import { Section, SectionHeading } from './Section'
 import styles from './Contact.module.css'
+
+const channels = [
+  { label: 'Phone', value: profile.phone, href: profile.phoneHref },
+  { label: 'Location', value: profile.location },
+  { label: 'Availability', value: profile.availability },
+]
 
 export function Contact() {
   const [sent, setSent] = useState(false)
@@ -25,60 +31,39 @@ export function Contact() {
   }
 
   return (
-    <Section id="contact" title="Get in touch" eyebrow="Contact" tone="dark">
-      <div className={styles.grid}>
-        <Reveal className={styles.info}>
+    <Section id="contact" className={styles.section}>
+      {/* A full-width statement, then the details and the form beneath it. */}
+      <SectionHeading>
+        Let&rsquo;s build something that holds up.
+      </SectionHeading>
+
+      <div className={styles.split}>
+        <Reveal delay={80} className={styles.left}>
           <p className={styles.lead}>
-            I am currently open to backend and full-stack Java roles. If you have an
-            opening, a project in mind, or just want to say hello, my inbox is open.
+            I am open to backend and full-stack Java roles. If you have an opening or a
+            project in mind, my inbox is open.
           </p>
 
-          <ul className={styles.channels}>
-            <li>
-              <a href={`mailto:${profile.email}`} className={styles.channel}>
-                <span className={styles.channelIcon}>
-                  <Icon name="mail" size={18} />
-                </span>
-                <span>
-                  <span className={styles.channelLabel}>Email</span>
-                  <span className={styles.channelValue}>{profile.email}</span>
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href={profile.phoneHref} className={styles.channel}>
-                <span className={styles.channelIcon}>
-                  <Icon name="phone" size={18} />
-                </span>
-                <span>
-                  <span className={styles.channelLabel}>Phone</span>
-                  <span className={styles.channelValue}>{profile.phone}</span>
-                </span>
-              </a>
-            </li>
-            <li>
-              <span className={styles.channel}>
-                <span className={styles.channelIcon}>
-                  <Icon name="location" size={18} />
-                </span>
-                <span>
-                  <span className={styles.channelLabel}>Location</span>
-                  <span className={styles.channelValue}>{profile.location}</span>
-                </span>
-              </span>
-            </li>
-            <li>
-              <span className={styles.channel}>
-                <span className={styles.channelIcon}>
-                  <Icon name="briefcase" size={18} />
-                </span>
-                <span>
-                  <span className={styles.channelLabel}>Availability</span>
-                  <span className={styles.channelValue}>{profile.availability}</span>
-                </span>
-              </span>
-            </li>
-          </ul>
+          <a href={`mailto:${profile.email}`} className={styles.email}>
+            {profile.email}
+          </a>
+
+          <dl className={styles.channels}>
+            {channels.map((channel) => (
+              <div key={channel.label} className={styles.channel}>
+                <dt className="label">{channel.label}</dt>
+                <dd>
+                  {channel.href ? (
+                    <a href={channel.href} className={styles.channelLink}>
+                      {channel.value}
+                    </a>
+                  ) : (
+                    channel.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
 
           <ul className={styles.socials}>
             {socials.map((social) => (
@@ -90,7 +75,7 @@ export function Contact() {
                     ? { target: '_blank', rel: 'noreferrer noopener' }
                     : {})}
                 >
-                  <Icon name={social.icon as IconName} size={17} />
+                  <Icon name={social.icon as IconName} size={16} />
                   {social.label}
                 </a>
               </li>
@@ -98,7 +83,7 @@ export function Contact() {
           </ul>
         </Reveal>
 
-        <Reveal delay={120} className={styles.formWrap}>
+        <Reveal delay={160} className={styles.formWrap}>
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.field}>
               <label htmlFor="name">Name</label>
@@ -121,13 +106,13 @@ export function Contact() {
               <textarea
                 id="message"
                 name="message"
-                rows={5}
+                rows={4}
                 required
-                placeholder="Tell me about the role or project..."
+                placeholder="Tell me about the role or project…"
               />
             </div>
 
-            <button type="submit" className={styles.submit}>
+            <button type="submit" className="button">
               Send message
             </button>
 

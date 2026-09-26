@@ -1,0 +1,44 @@
+/* The gap above and below is the same as a real section: this is a moment. */
+.band {
+  padding-top: var(--section-pad-tight);
+  padding-bottom: var(--section-pad-tight);
+}
+
+.sentence {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 clamp(28px, 4vw, 60px);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.value {
+  font-size: clamp(2.75rem, 5.6vw, 4.75rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.word {
+  font-size: var(--fs-lede);
+  letter-spacing: var(--tracking-body);
+  color: var(--text-muted);
+}
+
+@media (max-width: 734px) {
+  .sentence {
+    gap: 4px 24px;
+  }
+
+  .item {
+    gap: 8px;
+  }
+}

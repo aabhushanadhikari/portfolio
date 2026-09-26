@@ -1,0 +1,115 @@
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.flow {
+  --link: clamp(30px, 4vw, 54px);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--link);
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 32px);
+  border: 1px solid var(--hairline);
+  border-radius: 24px;
+  background: radial-gradient(120% 150% at 50% 0%, #17171b 0%, #08080a 72%);
+}
+
+:root[data-theme='light'] .flow {
+  background: radial-gradient(120% 150% at 50% 0%, #ffffff 0%, #ededf0 72%);
+}
+
+.node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #0a0a0c;
+}
+
+:root[data-theme='light'] .node {
+  background: #fbfbfd;
+}
+
+.nodeLabel {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-title);
+}
+
+.nodeDetail {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0;
+}
+
+/* A hairline spans the gap between two nodes. */
+.node + .node::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--link));
+  top: 50%;
+  width: var(--link);
+  height: 1px;
+  background: var(--border);
+}
+
+/* A dot in transit at the end of each link. */
+.node:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-50%);
+  animation: beat 4s ease-in-out infinite;
+}
+
+.node:nth-child(2)::after {
+  animation-delay: 2s;
+}
+
+@keyframes beat {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.caption {
+  color: var(--text-faint);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node:not(:last-child)::after {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 620px) {
+  .flow {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 34px;
+  }
+
+  .node + .node::before,
+  .node:not(:last-child)::after {
+    display: none;
+  }
+}
