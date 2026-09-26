@@ -34,6 +34,8 @@
 }
 
 .column h3 {
+  /* Category names are what a reader scans the strip for. */
+  color: var(--text-muted);
   padding-bottom: 22px;
 }
 

@@ -11,7 +11,8 @@
 }
 
 .years {
-  color: var(--text-faint);
+  /* Study dates are part of the qualification. */
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--fs-small);
   letter-spacing: 0;

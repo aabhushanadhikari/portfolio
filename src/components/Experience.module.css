@@ -55,7 +55,8 @@
 .dates {
   padding-top: 8px;
   text-align: right;
-  color: var(--text-faint);
+  /* A timeframe is a scan target, not decoration. */
+  color: var(--text-muted);
   font-size: var(--fs-small);
 }
 
@@ -104,7 +105,8 @@
 
 .focus {
   margin-top: 10px;
-  color: var(--text-faint);
+  /* Names the product the role was on — worth reading. */
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--fs-small);
 }

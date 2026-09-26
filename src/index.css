@@ -32,7 +32,7 @@
   --fs-lede: clamp(1.1875rem, 1.5vw, 1.4375rem);
   --fs-body: 1.0625rem;
   --fs-small: 0.9375rem;
-  --fs-micro: 0.75rem;
+  --fs-micro: 0.8125rem;
 
   --tracking-display: -0.035em;
   --tracking-title: -0.022em;
@@ -46,18 +46,33 @@
 
   color-scheme: dark;
 
-  /* Dark is the default surface of the page. */
+  /*
+   * Dark is the default surface of the page.
+
+   * Every text level here clears WCAG AA (4.5:1) against both #000 and the
+   * #0a0a0a band, measured: text 19.3:1, muted 8.2:1, faint 6.4:1. The faint
+   * level is the floor — anything a reader needs to evaluate the candidate
+   * (stack, employer, dates, degree) sits at muted or above, and only dividers
+   * and atmosphere are allowed to go quiet.
+   */
   --bg: #000000;
   --bg-band: #0a0a0a;
   --bg-elev: #1d1d1f;
   --text: #f5f5f7;
-  --text-muted: #86868b;
-  --text-faint: #6e6e73;
-  --border: rgba(245, 245, 247, 0.14);
-  --border-strong: rgba(245, 245, 247, 0.28);
+  --text-muted: #a1a1a6;
+  --text-faint: #8e8e93;
+  --border: rgba(245, 245, 247, 0.2);
+  --border-strong: rgba(245, 245, 247, 0.42);
   --accent: #2997ff;
   --accent-hover: #0071e3;
   --accent-contrast: #ffffff;
+  /*
+   * Filled buttons need a deeper blue than links do: white on #2997ff is only
+   * 3.0:1, white on #0071e3 is 4.7:1. Links keep the brighter #2997ff, which
+   * measures 7.0:1 on black.
+   */
+  --accent-solid: #0071e3;
+  --accent-solid-hover: #0066cc;
   --glass: rgba(22, 22, 24, 0.72);
   --hairline: rgba(245, 245, 247, 0.1);
 }
@@ -65,17 +80,20 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
+  /* Same hierarchy against white: text 16.8:1, muted 7.9:1, faint 5.1:1. */
   --bg: #ffffff;
   --bg-band: #f5f5f7;
   --bg-elev: #f5f5f7;
   --text: #1d1d1f;
-  --text-muted: #6e6e73;
-  --text-faint: #86868b;
-  --border: rgba(0, 0, 0, 0.16);
-  --border-strong: rgba(0, 0, 0, 0.34);
+  --text-muted: #515154;
+  --text-faint: #6e6e73;
+  --border: rgba(0, 0, 0, 0.26);
+  --border-strong: rgba(0, 0, 0, 0.44);
   --accent: #0071e3;
   --accent-hover: #0077ed;
   --accent-contrast: #ffffff;
+  --accent-solid: #0071e3;
+  --accent-solid-hover: #0066cc;
   --glass: rgba(251, 251, 253, 0.72);
   --hairline: rgba(0, 0, 0, 0.1);
 }
@@ -180,7 +198,7 @@ code {
   padding: 12px 24px;
   border: 1px solid transparent;
   border-radius: 980px;
-  background: var(--accent);
+  background: var(--accent-solid);
   color: var(--accent-contrast);
   font-size: 1.0625rem;
   letter-spacing: var(--tracking-body);
@@ -189,7 +207,7 @@ code {
 }
 
 .button:hover {
-  background: var(--accent-hover);
+  background: var(--accent-solid-hover);
   color: var(--accent-contrast);
 }
 
@@ -226,12 +244,16 @@ code {
   transform: translateX(3px);
 }
 
-/* One tag style for the whole site: hairline outline, no fill, uppercase. */
+/*
+ * One tag style for the whole site: hairline outline, no fill, uppercase.
+ * A tag says what something was built with, so it sits at the muted text level
+ * (8.2:1 on black) behind a real border (3.7:1) rather than a whisper.
+ */
 .tag {
   display: inline-flex;
   align-items: center;
   padding: 7px 14px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: 980px;
   background: transparent;
   color: var(--text-muted);
@@ -245,7 +267,7 @@ code {
 
 .tag:hover {
   color: var(--text);
-  border-color: var(--border-strong);
+  border-color: var(--text-faint);
 }
 
 /* Micro label used inside data rows and rails, never above a headline. */

@@ -1,7 +1,8 @@
+/* Above the sheet, so the bar and its Close button stay usable. */
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 70;
   height: var(--nav-height);
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -14,6 +15,20 @@
   background: var(--glass);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom-color: var(--hairline);
+}
+
+/*
+ * While the sheet is open the bar becomes a fixed, opaque strip pinned to the
+ * top. Fixed rather than sticky so it cannot be dragged off-screen by the
+ * overflow lock applied to the root element.
+ */
+.headerMenuOpen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg);
   border-bottom-color: var(--hairline);
 }
 
@@ -49,7 +64,7 @@
   color: var(--text);
   font-size: var(--fs-micro);
   letter-spacing: 0.01em;
-  opacity: 0.62;
+  opacity: 0.72;
   white-space: nowrap;
   transition: opacity var(--transition);
 }
@@ -92,7 +107,7 @@
   border-radius: 50%;
   background: transparent;
   color: var(--text);
-  opacity: 0.62;
+  opacity: 0.72;
   transition: opacity var(--transition), background-color var(--transition);
 }
 
@@ -105,7 +120,7 @@
   display: none;
   padding: 5px 15px;
   border-radius: 980px;
-  background: var(--accent);
+  background: var(--accent-solid);
   color: var(--accent-contrast);
   font-size: var(--fs-micro);
   font-weight: 500;
@@ -115,7 +130,7 @@
 }
 
 .resume:hover {
-  background: var(--accent-hover);
+  background: var(--accent-solid-hover);
   color: var(--accent-contrast);
 }
 
@@ -123,8 +138,8 @@
   display: none;
   align-items: center;
   gap: 5px;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border: 1px solid var(--border-strong);
   border-radius: 980px;
   background: transparent;
   color: var(--text);
@@ -143,35 +158,73 @@
   transform: rotate(90deg);
 }
 
-.menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  padding: 8px var(--gutter) 22px;
-  background: var(--glass);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--hairline);
-}
-
-.menuList {
+/*
+ * Full-screen sheet. Opaque and above the page, so nothing behind it shows
+ * through or stays clickable. It scrolls internally while the body is locked.
+ */
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
   display: flex;
   flex-direction: column;
+  padding: calc(var(--nav-height) + 24px) var(--gutter) 40px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--bg);
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheetList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   max-width: var(--max);
   margin: 0 auto;
 }
 
-.menuList a {
-  padding: 13px 0;
+.sheetLink {
+  display: block;
+  padding: 18px 0;
   border-bottom: 1px solid var(--hairline);
-  font-size: 1.25rem;
+  font-size: clamp(1.5rem, 6vw, 2rem);
   font-weight: 600;
   letter-spacing: var(--tracking-title);
+  color: var(--text);
 }
 
-.menuList li:last-child a {
-  border-bottom: none;
+.sheetLinkActive {
+  color: var(--accent);
+}
+
+.sheetFoot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  width: 100%;
+  max-width: var(--max);
+  /* Sits at the bottom on tall screens, but never traps the list on short ones. */
+  margin: auto auto 0;
+  padding-top: 40px;
+}
+
+.sheetSocials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.sheetSocial {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-body);
+  color: var(--text-muted);
+}
+
+.sheetSocial:hover {
+  color: var(--text);
 }
 
 @media (min-width: 1069px) {
