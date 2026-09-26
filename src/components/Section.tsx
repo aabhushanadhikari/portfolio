@@ -65,7 +65,10 @@ export function SectionHeading({
   headingClassName,
 }: SectionHeadingProps) {
   return (
-    <header
+    // A plain div, not <header>: this is a heading wrapper, not a banner. A
+    // stray <header> in all seven sections made the nav impossible to reason
+    // about, and any broad `header { ... }` rule would have hit all of them.
+    <div
       className={[
         styles.heading,
         align === 'center' ? styles.headingCenter : '',
@@ -85,6 +88,6 @@ export function SectionHeading({
         {children}
       </h2>
       {lede && <p className={styles.lede}>{lede}</p>}
-    </header>
+    </div>
   )
 }

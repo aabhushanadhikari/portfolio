@@ -90,7 +90,8 @@
 
 .codeBody {
   margin: 0;
-  padding: 30px 32px 34px;
+  /* Tight enough that the block of code, not the padding, sets the height. */
+  padding: 26px 30px 28px;
   overflow-x: auto;
   font-family: var(--font-mono);
   font-size: 0.875rem;

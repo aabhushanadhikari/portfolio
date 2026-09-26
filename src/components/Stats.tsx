@@ -26,6 +26,7 @@ export function Stats() {
               <span aria-hidden="true" className={styles.value}>
                 {stat.value}
               </span>
+              {/* Under the figure, so the grey never sits on the number's line. */}
               <span aria-hidden="true" className={styles.word}>
                 {stat.word}
               </span>

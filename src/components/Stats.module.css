@@ -6,25 +6,30 @@
 
 .sentence {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 0 clamp(28px, 4vw, 60px);
+  gap: clamp(28px, 4vw, 60px);
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
 
 .item {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
+/*
+ * The figures run at the same size, weight and colour as the section headlines
+ * above and below them, so the row reads as a statement rather than a caption.
+ */
 .value {
-  font-size: clamp(2.75rem, 5.6vw, 4.75rem);
+  font-size: var(--fs-display);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
+  color: var(--text);
 }
 
 .word {
@@ -35,10 +40,10 @@
 
 @media (max-width: 734px) {
   .sentence {
-    gap: 4px 24px;
+    gap: 24px 32px;
   }
 
   .item {
-    gap: 8px;
+    gap: 6px;
   }
 }

@@ -2,10 +2,14 @@
 .timeline {
   --rail: 170px;
   --gap: clamp(28px, 4vw, 56px);
+  --dot-size: 12px;
+  /* Half the dot, less half the 1px rule: this is what centres the dot on the
+     line instead of hanging it 5px to the right. */
+  --dot-lift: calc((var(--dot-size) - 1px) / 2);
   /* The hairline runs down the middle of the gap, so the dates and the
      content both keep their distance from it. */
   --line-x: calc(var(--rail) + var(--gap) / 2);
-  --dot-x: calc(var(--gap) / -2);
+  --dot-x: calc(var(--gap) / -2 - var(--dot-lift));
   display: flex;
   flex-direction: column;
 }
@@ -26,7 +30,7 @@
   top: 0;
   width: 1px;
   height: 53px;
-  background: var(--border);
+  background: var(--timeline-line);
 }
 
 .entry:first-child::before {
@@ -38,10 +42,10 @@
   content: '';
   position: absolute;
   left: var(--line-x);
-  top: 64px;
+  top: 65px;
   bottom: -40px;
   width: 1px;
-  background: var(--border);
+  background: var(--timeline-line);
 }
 
 .entry:last-child {
@@ -85,10 +89,13 @@
   position: absolute;
   top: 13px;
   left: var(--dot-x);
-  width: 11px;
-  height: 11px;
+  width: var(--dot-size);
+  height: var(--dot-size);
   border-radius: 50%;
   background: var(--text);
+  /* A ring in the band's own colour punches a gap in the rule, so the dot
+     reads as a node on the line rather than a blob sitting on top of it. */
+  box-shadow: 0 0 0 4px var(--bg-band);
 }
 
 .company {
@@ -156,7 +163,8 @@
   .timeline {
     --rail: 0px;
     --line-x: 5px;
-    --dot-x: -32px;
+    /* 32px of padding, then the same centring correction. */
+    --dot-x: calc(-32px - var(--dot-lift));
   }
 
   .entry {

@@ -75,6 +75,9 @@
   --accent-solid-hover: #0066cc;
   --glass: rgba(22, 22, 24, 0.72);
   --hairline: rgba(245, 245, 247, 0.1);
+  /* The timeline is a through-line, so it gets its own weight: 3.8:1 here,
+     against 1.9:1 for a general hairline on the light band. */
+  --timeline-line: rgba(245, 245, 247, 0.42);
 }
 
 :root[data-theme='light'] {
@@ -96,6 +99,9 @@
   --accent-solid-hover: #0066cc;
   --glass: rgba(251, 251, 253, 0.72);
   --hairline: rgba(0, 0, 0, 0.1);
+  /* 2.5:1 on the #f5f5f7 band: a hairline you can actually follow, still light
+     enough to sit behind the text. A general hairline here is only 1.9:1. */
+  --timeline-line: rgba(0, 0, 0, 0.36);
 }
 
 *,
@@ -125,6 +131,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition: background-color var(--transition), color var(--transition);
+}
+
+/*
+ * The nav is a direct child of the body, so it needs no isolation of its own.
+ * Confining everything below it to a single stacking context means no section
+ * can paint over the bar, whatever z-index it uses internally.
+ */
+main {
+  isolation: isolate;
 }
 
 h1,
