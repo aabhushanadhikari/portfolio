@@ -1,56 +1,45 @@
-/* Extends to the section's own edges so the strip reads as a swipeable row. */
-.viewport {
-  margin: 0 calc(var(--gutter) * -1);
-  padding: 0 var(--gutter);
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  /* Fade only the trailing edge, so the row reads as continuing off-screen. */
-  mask-image: linear-gradient(to right, #000 94%, transparent);
-}
-
-.viewport::-webkit-scrollbar {
-  display: none;
-}
-
+/*
+ * The column count follows the available width instead of being fixed: four on a
+ * wide desktop, three on a mid-size one, two on a tablet, one on a phone. The
+ * 200px floor is the narrowest a pill needs before it starts wrapping, so the
+ * grid can never be pushed wider than its container.
+ */
 .strip {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(228px, 1fr);
-  column-gap: clamp(24px, 3vw, 48px);
-  padding-bottom: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: 32px;
+  row-gap: clamp(40px, 4vw, 56px);
+  /* Columns size to their own content; headers stay at the top of the row. */
+  align-items: start;
 }
 
 .column {
-  /* Tags start on the same line in every column. */
-  align-self: start;
-  scroll-snap-align: start;
-  padding-right: clamp(8px, 2vw, 32px);
-  border-right: 1px solid var(--hairline);
-}
-
-.column:last-child {
-  border-right: none;
+  min-width: 0;
 }
 
 .column h3 {
   /* Category names are what a reader scans the strip for. */
   color: var(--text-muted);
-  padding-bottom: 22px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+  /* A long name wraps to a second line instead of being clipped. */
+  overflow-wrap: break-word;
+}
+
+/*
+ * Once categories sit side by side, reserve two lines for every header so a
+ * one-line "Languages" still starts its tags on the same line as a wrapped
+ * "Frameworks & Libraries" beside it. Below the two-column breakpoint they
+ * stack, so the reservation would only add dead space.
+ */
+@media (min-width: 480px) {
+  .column h3 {
+    min-height: 3em;
+  }
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-@media (max-width: 734px) {
-  .strip {
-    grid-auto-columns: minmax(200px, 1fr);
-  }
-
-  .viewport {
-    mask-image: linear-gradient(to right, #000 90%, transparent);
-  }
 }

@@ -254,5 +254,10 @@
 @media (max-width: 560px) {
   .brand {
     font-size: 1.1875rem;
+    /* On a very narrow phone the name gives up room rather than pushing the
+       whole page sideways: the bar ran 13px wider than a 320px viewport. */
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
